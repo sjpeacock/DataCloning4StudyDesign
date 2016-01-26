@@ -17,13 +17,10 @@ library(boot)
 #########################################################
 # 1) Read in data and define parameters
 ########################################################
-yr<-2003; r<-1
 data<-read.delim("Data/Leps.txt", header=TRUE)
-data<-subset(data, year==yr&rep==r&route!="Lower Knight")
 
 #Calculate vector of distance for each data point
 sum.data<-read.delim("Data/Summary.txt", header=TRUE)
-sum.data<-subset(sum.data, year==yr&rep==r&route!="Lower Knight")
 
 x<-sort(sum.data$distance)
 
