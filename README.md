@@ -8,6 +8,7 @@ This repository contains three folders:
   - SeaLice_dclone_lessSpread.R: simualtes data for the less-spread data scenario and fits the model using data cloning.
   - SeaLice_dclone_moreSpread.R: simualtes data for the more-spread data scenario and fits the model using data cloning.
   - SeaLice_dclone_original.R: fits the model to the original dataset using data cloning.
+
 2) Data
   - Leps.txt contains the sea louse data
   - Summary.txt contains the site data, including distance along migration route
