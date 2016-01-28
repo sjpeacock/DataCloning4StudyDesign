@@ -21,7 +21,6 @@ load('Code/Workspaces/20160125_lessSpreadData_prior1.RData')
 allMod[[1]]<-dc.mod
 allDat[[1]]<-data
 allX[[1]]<-x
-allPrior[[1]]<-prior
 
 # 2) Original data
 load('Code/Workspaces/20160125_originalData_prior1.RData')
@@ -40,7 +39,7 @@ allX[[3]]<-x
 #---------------------------------------------------------
 
 DC<-list(); length(DC)<-3
-for(i in 1:3){ DC[[i]]<-dctable(allMod[[i]])}}
+for(i in 1:3){ DC[[i]]<-dctable(allMod[[i]])}
 
 # Plot of varaiance over number of clones
 par.names<-c(expression(italic(D)), expression(lambda[c]), expression(italic(L[h])), expression(italic(L[m])), expression(alpha), expression(kappa), expression(italic(s[c])), expression(italic(s[h]))) 
@@ -60,7 +59,7 @@ for(i in 1:2){
 	
 	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)
 
-	if(i==2) legend(6.5, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less spread", "Original data", "More spread"), bty="n", pt.bg=colR, xpd=NA)
+	if(i==2) legend(6, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)
 	
 	}
 mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)
@@ -135,6 +134,7 @@ legend(-27.2, 27.2, pch=c(1,0,5), col=colR, c("Less spread", "Original data", "M
 ######################################################### 
 # Fig 5: Model fits to data
 ######################################################### 
+source("Code/sim_model.R")
 
 boot<-function(x, n=1000){
 	xi<-matrix(sample(x, n*length(x), replace=TRUE), nrow=n, ncol=length(x))
@@ -154,10 +154,10 @@ for(j in 1:3){# for each dataset
 	}	
 	
 allParams<-list(); length(allParams)<-3
-for(i in 1:3){ allParams[[i]]<-summary(allMod[[i]])[[1]][,1]}}
+for(i in 1:3){ allParams[[i]]<-summary(allMod[[i]])[[1]][,1]}
 
 allPred<-list(); length(allPred)<-3
-for(i in 1:3){ allPred[[i]]<-sim(allParams[[i]], x=c(-60:60)) }}
+for(i in 1:3){ allPred[[i]]<-sim(allParams[[i]], x=c(-60:60)) }
 
 col2<-rep(colR[2], 16); col2[c(1,2,3)]<-colR[1]; col2[c(5,13)]<-colR[3]
 
@@ -171,7 +171,7 @@ for(j in 1:3){
 		abline(v=0, lty=2)
 		
 		plotCI(allX[[i]], Z[[i,j]][,1], li= Z[[i,j]][,2], ui= Z[[i,j]][,3], gap=0.3, pch=21, pt.bg="white", col=colR[i], add=TRUE)
-		if(j==1) mtext(side=3, c("Less spread", "Original data", "More spread")[i], line=1)
+		if(j==1) mtext(side=3, c("Less-spread", "Original", "More-spread")[i], line=1)
 		if(j==3) axis(side=1) else axis(side=1, labels=FALSE)
 		if(i==1) axis(side=2, las=1) else axis(side=2, labels=FALSE)
 		if(i==1) mtext(side=2, c("C(x)", "H(x)", "M(x)")[j], line=3)
@@ -196,30 +196,27 @@ for(i in 1:3){
 			allParams[[i,2]]<-summary(allMod[[i]])[[2]][,1]
 			allParams[[i,3]]<-summary(allMod[[i]])[[2]][,5]
 		}
-	}}
+	}
 
 rangeP<-matrix(0, nrow=8, ncol=2)
 for(k in 1:8){
 	rangeP[k,1]<-min(allParams[[1,2]][k])
-	for(i in 2:3){ rangeP[k,1]<-min(c(rangeP[k,1], allParams[[i,2]][k]))}}
-	
-	rangeP[k,2]<-max(allParams[[1,1,3]][k])
-	for(i in 2:3){for(j in 2:3){ rangeP[k,2]<-max(c(rangeP[k,2], allParams[[i,j,3]][k]))}}
-}
+	for(i in 2:3){
+		rangeP[k,1]<-min(c(rangeP[k,1], allParams[[i,2]][k]))
+		}
+	rangeP[k,2]<-max(allParams[[1,3]][k])
+	for(i in 2:3){
+		rangeP[k,2]<-max(c(rangeP[k,2], allParams[[i,3]][k]))
+		}
+	}
 
-quartz(width=6, height=2.5, pointsize=11)
+quartz(width=5, height=2.5, pointsize=11)
 par(mar=c(3,1,1,1), oma=c(0,0,0,0))
 for(k in 1:8){
-	plotCI(k, allParams[[1,1,1]][k], col=NA, xlim=c(1,8.8), ylim=rangeP[k,], yaxt="n", xaxt="n", bty="n")
-	if(k==1){
-		for(i in c(1,3,5,7)){
-			polygon(x=c(i-0.15, i+1-0.15, i+1-0.15, i-0.15), y=c(3,3,5,5), border=NA, col=grey(0.8))
-		}}
-	for(p in 1:3){
-		plotCI(k+(p-1)*0.06, allParams[[1,p,1]][k], li=allParams[[1,p,2]][k], ui= allParams[[1,p,3]][k], col=colR[1], gap=0.3, add=TRUE, cex=0.8, pch=21, pt.bg="white", sfrac=0.008)
-		plotCI(k+0.3+(p-1)*0.06, allParams[[2,p,1]][k], li=allParams[[2,p,2]][k],ui= allParams[[2,p,3]][k], col=colR[2], gap=0.3, add=TRUE, cex=0.8, pch=22, pt.bg="white", sfrac=0.008)
-		plotCI(k+0.6+(p-1)*0.06, allParams[[3,p,1]][k], li=allParams[[3,p,2]][k],ui= allParams[[3,p,3]][k], col=colR[3], gap=0.3, add=TRUE, cex=0.8, pch=23, pt.bg="white", xpd=NA, sfrac=0.008)
-		}
+	plotCI(k, allParams[[1,1]][k], col=NA, xlim=c(1,8.8), ylim=rangeP[k,], yaxt="n", xaxt="n", bty="n")
+	plotCI(k+0.2, allParams[[1,1]][k], li=allParams[[1,2]][k], ui= allParams[[1,3]][k], col=colR[1], gap=0.3, add=TRUE, pch=21, pt.bg="white", sfrac=0.008)
+		plotCI(k+0.375, allParams[[2,1]][k], li=allParams[[2,2]][k],ui= allParams[[2,3]][k], col=colR[2], gap=0.3, add=TRUE, pch=22, pt.bg="white", sfrac=0.008)
+		plotCI(k+0.55, allParams[[3,1]][k], li=allParams[[3,2]][k],ui= allParams[[3,3]][k], col=colR[3], gap=0.3, add=TRUE, pch=23, pt.bg="white", xpd=NA, sfrac=0.008)
 	if(k<8) par(new=TRUE)
 	}
 axis(side=1, at=c(1:8+0.3), labels=par.names, tick=FALSE, line=-0.5)	
