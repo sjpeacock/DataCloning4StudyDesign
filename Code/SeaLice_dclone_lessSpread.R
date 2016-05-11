@@ -1,12 +1,18 @@
-# January 26, 2015
-# Data cloning/Bayesian fits using JAGS for the sea lice transmission model
-# Stephanie Peacock
-# stephanie.peacock@ualberta.ca
-# I am trying the 2003 model that includes just one farm and one species of host
+###################################################################################
+# This code accompanies the paper:
+#
+# Study design and parameter estimability for spatial and temporal ecological models
+#
+# Submitted May 11, 2016 to Methods in Ecology and Evolution by
+# Stephanie J Peacock, Martin Krkosek, Mark Lewis, and Subhash Lele
+# Questions should be directed to corresponding author SJ Peacock at
+# stephanie.j.peacock at gmail.com
+###################################################################################
+
 #########################################################
 #########################################################
 
-rm(list=ls())
+# rm(list=ls())
 
 library(dclone)
 library(gplots)

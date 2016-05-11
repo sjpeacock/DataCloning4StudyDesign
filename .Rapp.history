@@ -1,0 +1,615 @@
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+par(mar=c(4,4,1,1))#
+plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)
+addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cexds=1.8)
+plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cexds=1.8)#
+	addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)#
+	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)
+addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cex=1.8)
+plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	# lines(migRoute$X, migRoute$Y, lwd=8, col="#228B22")#
+	# arrows(migRoute$X[63], migRoute$Y[63],migRoute$X[64], migRoute$Y[64], col="#228B22", lwd=8, length=0.2)#
+	# Add all farm locations#
+	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cex=1.8)#
+	addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)#
+	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")
+points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")
+points(L$text$x[3]-0.03, L$text$y[3], pch=8, cex=0.8)
+L<-legend("bottomleft", pch=c(22,8,21,21,15), pt.bg=c(colR[3], NA, "white", "white",NA), col=c(1,1,1,1,"#2c7bb680"), c("Salmon farm", "Wild salmon sampling site", "Moved sites", "Added sites", "Migration route"), bg="white", cex=0.8, pt.cex=c(1.5, 0.8, 1.8, 1.8,1.3))#
+points(L$text$x[3]-0.03, L$text$y[3], pch=8, cex=0.8)
+quartz(width=5, height=3, pointsize=10)#
+par(mar=c(4,4,1,1))#
+plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	# lines(migRoute$X, migRoute$Y, lwd=8, col="#228B22")#
+	# arrows(migRoute$X[63], migRoute$Y[63],migRoute$X[64], migRoute$Y[64], col="#228B22", lwd=8, length=0.2)#
+	# Add all farm locations#
+	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cex=1.8)#
+	addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)#
+	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)#
+	points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")
+quartz(width=5, height=3, pointsize=10)#
+par(mar=c(4,4,1,1))#
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	 # addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
+	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)#
+	# Add all farm locations#
+	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", col=colR[1], cex=1.8)#
+	addPoints(sampling.loc[is.element(sampling.loc$EID,c(1:3)),], pch=21, bg="white", col=colR[3], cex=1.8)#
+	addPoints(farm.loc[farm.loc$EID==19,], pch=15,cex=1.5)#
+	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)#
+	points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])#
+	points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=0.8, pch=8, col=colR[1])
+quartz(width=5, height=3, pointsize=10)#
+par(mar=c(4,4,1,1))#
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	 # addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
+	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)#
+	# Add all farm locations#
+	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", col=colR[1], cex=1.8)#
+	addPoints(sampling.loc[is.element(sampling.loc$EID,c(1:3)),], pch=21, bg="white", col=colR[3], cex=1.8)#
+	addPoints(farm.loc[farm.loc$EID==19,], pch=15,cex=1.5)#
+	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+par(mar=c(4,4,1,1))#
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	 # addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
+	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2],
+addPoints(farm.loc[farm.loc$EID==19,], pch=15,cex=1.5)
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
+	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)
+arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)
+arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=12, length=0.08)
+# arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=12, length=0.2)
+addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
+	 arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=12, length=0.2)
+addLines(migRoute, lwd=14, col=""#228B22"")
+addLines(migRoute, lwd=14, col=""#228B22"")
+addLines(migRoute, lwd=14, col="#228B22")
+arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=8, length=0.2)
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	 addLines(migRoute, lwd=8, col="#228B22")#
+	 arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=8, length=0.2)
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", col=colR[1], cex=1.8)
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=0.8, pch=8, col=colR[1])
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addPoints(sampling.loc[is.element(sampling.loc$EID,c(1:3)),], pch=21, bg="white", col=colR[3], cex=1.8)
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
+addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=0.8, pch=8, col=colR[1])
+plot(1,1,"n", bty="n", xlab="", ylab="")
+plot(1,1,"n", bty="n", xlab="", ylab="", xaxt="n", yaxt="n")
+L<-legend("bottomleft", pch=c(22,8,8,8,21,21), pt.bg=c(1,rep(NA, 3),rep("white",2)), col=c(1,1,rep(colR[c(3,1)],2)), c("Salmon farm", "Original data", "Added sites (less spread)", "Added sites (more spread)", "Removed sites (less spread)", "Removed site (more spread)"), bg="white", cex=0.8, pt.cex=c(1.5, rep(0.8, 3), rep(1.8,2)))
+plot(1:3, 1:3, col=colR, pch=19, cex=3)
+colR<-c("#2c7bb6", "#abd9e9", "#fdae61", "#d7191c") #Light blue: "#abd9e9"
+plot(1:4, 1:4, col=colR, pch=19, cex=3)
+x<-seq(-10,10,0.1)
+x<-seq(-10,10,0.01)
+p<-dnorm(x, mean=1.5, sd=0.3)
+plot(x, p, "l")
+quartz(width=5, height=4)
+quartz(width=6, height=4)
+plot(x, p, "l")
+par(mar=c(4,4,2,1), bg=:white)
+par(mar=c(4,4,2,1), bg="white")
+plot(x, p, "l")
+p<-dnorm(x, mean=1.5, sd=1.3)
+par(mar=c(4,4,2,1), bg="white")#
+plot(x, p, "l")
+plot(x, p, "l", lty=2, col=colR[1])
+plot(x, p, "l", col=colR[1], lwd=2)
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n")
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l")
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE)
+par(mar=c(4,4,2,1), bg="white")#
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)
+mtext(side=2, line=1, "Density")
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+quartz(width=7, height=4)#
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+p<-dnorm(x, mean=1.5, sd=2)#
+L<-dnorm(x, -1, 0.5)
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+lines(x, L, col=colR[4])
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=c(p,L))
+L
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)))
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+#
+lines(x, L, col=colR[4])
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)), xlim=c(-7, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+#
+lines(x, L, col=colR[4])
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+#
+lines(x, L, col=colR[4])
+lines(x, L*p)
+lines(x, L*p/sum(L*p))
+sum(L*p)
+sum(p)
+sum(L)
+sum(L*p)
+lines(x, L*p/(001*sum(L*p))
+)
+lines(x, L*p/(0.01*sum(L*p)))
+p<-dnorm(x, mean=1.5, sd=2)#
+L<-dnorm(x, -1, 1.2)
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+#
+lines(x, L, col=colR[4])
+lines(x, L*p/(0.01*sum(L*p)))
+plot(x, prior, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))
+x<-seq(-10,10,0.01)#
+prior<-dnorm(x, mean=1.5, sd=2)#
+like<-dnorm(x, -1, 1.2)#
+post<-L*p/(0.01*sum(L*p))
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, prior, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+lines(x, L, col=colR[4])
+lines(x, L, col=colR[4], lwd=2)
+lines(x, post, col=colR[3], lwd=2)
+colR2<-c("#2c7bb660", "#abd9e960", "#fdae6160", "#d7191c60")
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, prior, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+lines(x, L, col=colR[4], lwd=2)
+lines(x, L, col=colR2[4], lwd=2)
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+lines(x, prior, col=colR2[1], lwd=2)#
+lines(x, like, col=colR2[4], lwd=2)#
+lines(x, post, col=colR[3], lwd=2)
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+lines(x, prior, col=colR2[1])#
+lines(x, like, col=colR2[4])#
+lines(x, post, col=colR[3], lwd=2)
+lines(x, post, col=colR[3], lwd=3)
+lines(x, prior, col=colR[1], lwd=2)
+lines(x, like, col=colR[4], lwd=2)
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+lines(x, prior, col=colR[1], lwd=2)
+lines(x, like^2, col=colR[4], lwd=2)
+lines(x, like, col=colR[4], lwd=2)
+post<-like*prior/(0.01*sum(like*prior))
+lines(x, like^2*prior/(0.01*sum(like^2*prior)))
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+post2<-like^2*prior/(0.01*sum(like^2*prior))
+post2
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7))
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+#
+lines(x, prior, col=colR[1], lwd=2)
+lines(x, like, col=colR[4], lwd=2)
+lines(x, like^2, col=colR[4], lwd=2)
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+#
+lines(x, prior, col=colR[1], lwd=2)#
+lines(x, like, col=colR2[4], lwd=2)#
+lines(x, like^2, col=colR[4], lwd=2)
+lines(x, post, lwd=2, col=colR2[3])
+lines(x, post2, lwd=2, col=colR[3])
+# # u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08);arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE)
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE)
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)
+x<-seq(-10,10,0.01)
+prior<-rep(0.01, length(x))
+like<-dnorm(x, -1, 1.2)
+post<-like*prior/(0.01*sum(like*prior))
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")
+lines(x, prior, col=colR[1], lwd=2)
+lines(x, like, col=colR[4], lwd=2)
+lines(x, post, col=colR[3], lwd=3)
+post2<-like^2*prior/(0.01*sum(like^2*prior))
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7))#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+#
+lines(x, prior, col=colR[1], lwd=2)#
+lines(x, like, col=colR2[4], lwd=2)#
+lines(x, like^2, col=colR[4], lwd=2)
+lines(x, post, lwd=2, col=colR2[3])#
+lines(x, post2, lwd=2, col=colR[3])
+plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)
+mtext(side=2, line=1, "Density")
+ltext(side=1, line=1, "Parameter value")
+mtext(side=1, line=1, "Parameter value")
+par(mar=c(4,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")
+lines(x, prior, col=colR[1], lwd=2)#
+#
+#Like#
+lines(x, like, col=colR[4], lwd=2)#
+#
+#Post#
+lines(x, post, col=colR[3], lwd=3)
+prior<-dnorm(x, mean=1.5, sd=2)
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")
+prior<-rep(0.01, length(x))#
+like<-dnorm(x, 1, 1.2)#
+post<-like*prior/(0.01*sum(like*prior))#
+#
+quartz(width=7, height=4)#
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+# Prior#
+lines(x, prior, col=colR[1], lwd=2)#
+#
+#Like#
+lines(x, like, col=colR[4], lwd=2)#
+#
+#Post#
+lines(x, post, col=colR[3], lwd=3)
+lines(x, post, col=colR[3], lwd=3, lty=3)
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+# Prior#
+lines(x, prior, col=colR[1], lwd=2)#
+#
+#Like#
+lines(x, like, col=colR[4], lwd=2)#
+#
+#Post#
+lines(x, post, col=colR[3], lwd=3, lty=3)
+post2<-like^2*prior/(0.01*sum(like^2*prior))
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+lines(x, prior, col=colR[1], lwd=2)#
+lines(x, like, col=colR2[4], lwd=2)#
+lines(x, like^2, col=colR[4], lwd=2)#
+lines(x, post, lwd=2, col=colR2[3])
+lines(x, post2, lwd=2, col=colR[3])
+lines(x, prior, col=colR[1], lwd=2)
+lines(x, like, col=colR2[4], lwd=2)
+for(i in 1:5){#
+	j<-c(1,2,3,5,10)[i]#
+	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i]))#
+}
+lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""))
+for(i in 1:5){#
+	j<-c(1,2,3,5,10)[i]#
+	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""))#
+}
+lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-3, 8), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+for(i in 1:5){#
+	j<-c(1,2,3,5,10)[i]#
+	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)#
+}
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-3, 5), xaxt="n")
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-3, 5), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+for(i in 1:5){#
+	j<-c(1,2,3,5,10)[i]#
+	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)#
+}
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+for(i in 1:5){#
+	j<-c(1,2,3,5,10)[i]#
+	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)#
+}
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+for(i in 1:5){#
+	j<-c(1,2,3,5,10)[i]#
+	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=colR[3], lwd=2)#
+}
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[3])
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+# Prior#
+lines(x, prior, col=colR[3], lwd=2)#
+#
+#Like#
+lines(x, like, col=colR[4], lwd=2)#
+#
+#Post#
+lines(x, post, col=colR[1], lwd=3)
+post2<-like^2*prior/(0.01*sum(like^2*prior))#
+#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+lines(x, prior, col=colR[3], lwd=2)#
+lines(x, like, col=colR2[4], lwd=2)#
+lines(x, like^2, col=colR[4], lwd=2)#
+lines(x, post, lwd=2, col=colR2[1])#
+lines(x, post2, lwd=2, col=colR[1])
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+for(i in 1:5){#
+	j<-c(1,2,3,5,10)[i]#
+	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[1], c(30,45,60,80,99)[i], sep=""), lwd=2)#
+}
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l")
+uartz(width=4, height=4)#
+par(mar=c(4,4,2,1), bg="white")#
+#
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1)
+par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1)
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+quartz(width=3, height=3)#
+par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))#
+#
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+quartz(width=4, height=3)#
+par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))#
+#
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", xlab=c(0,10))
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", xlab=c(0,10))
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", xlim=c(0,10))
+plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+post.all<-matrix(NA, nrow=5, ncol=length(x))#
+for(i in 1:5) post.all[i,]<-like^c(1,2,3,5,10)[i]*prior/(0.01*sum(like^c(1,2,3,5,10)[i]*prior))
+library(gplots)
+plotCI(1:10, apply(post.all,1,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+plotCI(1:10, apply(post.all,2,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+post.all<-matrix(NA, nrow=5, ncol=length(x))#
+for(i in 1:5) post.all[i,]<-like^c(1,2,3,5,10)[i]*prior/(0.01*sum(like^c(1,2,3,5,10)[i]*prior))
+post.all
+plotCI(1:10, apply(post.all,2,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+apply(post.all,2,mean)
+plotCI(1:10, apply(post.all,1,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+apply(post.all,1,mean)
+post.all<-matrix(NA, nrow=5, ncol=length(x))#
+for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
+post.all<-matrix(NA, nrow=10, ncol=length(x))
+for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
+plotCI(1:10, apply(post.all,1,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+apply(post.all,1,sd)
+plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
+plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
+x<-seq(-10,10,0.01)#
+prior<-dnorm(x, mean=1.5, sd=2)#
+# prior<-rep(0.01, length(x))#
+like<-dnorm(x, 1, 1.2)#
+post<-like*prior/(0.01*sum(like*prior))#
+#
+quartz(width=7, height=4)#
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")
+lines(x, prior, col=colR[3], lwd=2)#
+#
+#Like#
+lines(x, like, col=colR[4], lwd=2)#
+#
+#Post#
+lines(x, post, col=colR[1], lwd=3)
+prior<-dnorm(x, mean=2.5, sd=2)#
+# prior<-rep(0.01, length(x))#
+like<-dnorm(x, 1, 1.2)#
+post<-like*prior/(0.01*sum(like*prior))#
+#
+quartz(width=7, height=4)#
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+# Prior#
+lines(x, prior, col=colR[3], lwd=2)#
+#
+#Like#
+lines(x, like, col=colR[4], lwd=2)#
+#
+#Post#
+lines(x, post, col=colR[1], lwd=3)
+prior<-dnorm(x, mean=2.5, sd=2)#
+# prior<-rep(0.01, length(x))#
+like<-dnorm(x, -1, 1.2)#
+post<-like*prior/(0.01*sum(like*prior))#
+#
+quartz(width=7, height=4)#
+par(mar=c(2,2,2,1), bg="white")#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")
+lines(x, prior, col=colR[3], lwd=2)#
+#
+#Like#
+lines(x, like, col=colR[4], lwd=2)#
+#
+#Post#
+lines(x, post, col=colR[1], lwd=3)#
+#
+# 2 clones#
+post2<-like^2*prior/(0.01*sum(like^2*prior))
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+lines(x, prior, col=colR[3], lwd=2)#
+lines(x, like, col=colR2[4], lwd=2)#
+lines(x, like^2, col=colR[4], lwd=2)#
+lines(x, post, lwd=2, col=colR2[1])#
+lines(x, post2, lwd=2, col=colR[1])
+post.all<-matrix(NA, nrow=10, ncol=length(x))#
+for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))#
+#
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(post.all), xlim=c(-3, 5), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")
+for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(30,45,60,80,99)[i], sep=""), lwd=2)
+for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(1:9,9.9)/10[i], sep=""), lwd=2)
+c(1:9,9.9)/10
+for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)
+for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)
+post.all[,i]
+for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
+dim(post.all)
+for(i in 1:10) lines(x, post.all[i,], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)
+lines(x, like, col=colR[4], lwd=2)
+lines(x, like^1000*prior/(0.01*sum(like^1000*prior)), lty=3)
+like^1000*prior/(0.01*sum(like^1000*prior))
+lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=3)
+lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=2)
+lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=2, col=colR[1])
+plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
+plotCI(1:10, apply(post.all,2,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,2,sd), apply(post.all,2,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
+x<-seq(-10,10,0.01)#
+prior<-dnorm(x, mean=2.5, sd=2)#
+# prior<-rep(0.01, length(x))#
+like<-dnorm(x, -1, 1.2)#
+post<-like*prior/(0.01*sum(like*prior))
+post.all<-matrix(NA, nrow=10, ncol=length(x))#
+for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
+plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(post.all), xlim=c(-3, 5), xaxt="n")#
+u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
+arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
+mtext(side=2, line=1, "Density")#
+mtext(side=1, line=1, "Parameter value")#
+#
+for(i in 1:10) lines(x, post.all[i,], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)#
+lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=2, col=colR[1])
+par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))#
+#
+plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
+plot(1:10, apply(post.all, 1, mean))
+x<-seq(-10,10,0.01)#
+prior<-dnorm(x, mean=2.5, sd=2)#
+# prior<-rep(0.01, length(x))#
+like<-dnorm(x, -1, 1.2)#
+post<-like*prior/(0.01*sum(like*prior))
+post.all<-matrix(NA, nrow=10, ncol=length(x))#
+for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
+apply(post.all,1,mean)
+apply(post.all,1,mode)
+which(post.all[1,]==max(post.all[1,]))
+which(post.all[i,]==max(post.all[i,]))
+i=1
+plotCI(1:10, x[which(post.all[i,]==max(post.all[i,]))], li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
+calcMode<-function(dens) which(dens==max(dens))
+calcMode<-function(dens) which(dens==max(dens))
+apply(post.all, 1, calcMode)
+plot(1:10, x[apply(post.all, 1, calcMode)]
+)
+plot(post.all[1,])
+plot(x,post.all[1,])
+sum(post.all[1,])

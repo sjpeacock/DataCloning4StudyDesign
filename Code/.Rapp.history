@@ -1,0 +1,39 @@
+colR<-c("#2c7bb6", "#fdae61", "#d7191c") #Light blue: "#abd9e9"#
+#
+##########################################################
+# Map#
+######################################################### #
+#---------------------------------------------------------#
+# Fig 1: Map of study area#
+#---------------------------------------------------------#
+require(PBSmapping)#
+load("~/Google Drive/Broughton Map/Data/nepacLLhigh.rda")#
+#
+data<-read.delim("~/Google Drive/Broughton Map/Data/SeaLice_SummaryDatafile.txt")#
+names(data)#
+focal.year<-2003
+farms<-read.csv("~/Google Drive/Lice database/Morton/2015/Report/SeaLice2015Manuscript/Figures/Figure 3/FarmLocations.csv")#
+farm.loc<-data.frame(EID=farms$EID,X=farms$lon,Y=farms$lat, name=farms$name, co=farms$company)#
+farm.loc<-as.EventData(farm.loc, projection="LL")#
+#
+data1<-subset(data, year==focal.year)#
+X<--data1$lon#
+Y<-data1$lat#
+eid<-c(1:length(X))#
+sampling.loc<-data.frame(EID=eid,X,Y,date=data1$Date, rep=data1$rep, route=data1$route)#
+sampling.loc<-as.EventData(sampling.loc, projection="LL")
+B<-read.csv("~/Google Drive/Data cloning/Sea lice model/MEE paper/Code/MigRoute.csv")#
+migRoute<-data.frame(PID=rep(1, dim(B)[1]), POS=c(1:dim(B)[1]),X=B$V1,Y=B$V2)#
+migRoute <-as.PolySet(migRoute, projection="LL")
+quartz(width=5, height=3, pointsize=10)#
+par(mar=c(4,4,1,1))#
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	addLines(migRoute, lwd=8, col="#2c7bb680")#
+	# Add all farm locations#
+	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cex=1.8)#
+	addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)#
+	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)#
+	points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")#
+#
+L<-legend("bottomleft", pch=c(22,8,21,21,15), pt.bg=c(colR[3], NA, "white", "white",NA), col=c(1,1,1,1,"#2c7bb680"), c("Salmon farm", "Wild salmon sampling site", "Moved sites", "Added sites", "Migration route"), bg="white", cex=0.8, pt.cex=c(1.5, 0.8, 1.8, 1.8,1.3))#
+points(L$text$x[3]-0.03, L$text$y[3], pch=8, cex=0.8)

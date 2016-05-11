@@ -1,3 +1,14 @@
+###################################################################################
+# This code accompanies the paper:
+#
+# Study design and parameter estimability for spatial and temporal ecological models
+#
+# Submitted May 11, 2016 to Methods in Ecology and Evolution by
+# Stephanie J Peacock, Martin Krkosek, Mark Lewis, and Subhash Lele
+# Questions should be directed to corresponding author SJ Peacock at
+# stephanie.j.peacock at gmail.com
+###################################################################################
+
 #################################################################################################
 # This file plots the supplemental figures looking at the parameter estimates under
 # four different prior assumptions.
