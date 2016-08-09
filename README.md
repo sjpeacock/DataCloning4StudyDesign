@@ -1,6 +1,7 @@
 # Study design and parameter estimability for spatial and temporal ecological models
 
 Submitted May 11, 2016 to Methods in Ecology and Evolution
+Revised August 9, 2016 with increased number of clones in the Workspaces folder
 
 Stephanie J Peacock (stephanie.j.peacock at gmail.com), Martin Krkosek, Mark Lewis, and Subhash Lele
 
