@@ -100,7 +100,7 @@ source("Code/model.R")
 dat<-list(y=y, gamma=1.56, u_n=4/5, u_c=1/5, x=x, L=c(data$C, data$H, data$M), site=rep(data$site_num, 3), stage=c(rep(1, dim(data)[1]), rep(2, dim(data)[1]), rep(3, dim(data)[1])), prior=rbind(prior.mean, 1/(prior.sd)^2))
 
 
-K<-c(1:10)
+K<-c(1:25)
 cl<-makeCluster(4, type="SOCK")
 t.start<-proc.time()
 

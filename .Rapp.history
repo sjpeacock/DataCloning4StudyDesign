@@ -1,615 +1,495 @@
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
+colR<-c("#2c7bb6", "#fdae61", "#d7191c") #Light blue: "#abd9e9"#
+#
+##########################################################
+# Map#
+######################################################### #
+#---------------------------------------------------------#
+# Fig 1: Map of study area#
+#---------------------------------------------------------#
+require(PBSmapping)#
+load("~/Google Drive/Broughton Map/Data/nepacLLhigh.rda")#
+#
+data<-read.delim("~/Google Drive/Broughton Map/Data/SeaLice_SummaryDatafile.txt")#
+names(data)#
+focal.year<-2003
+farms<-read.csv("~/Google Drive/Lice database/Morton/2015/Report/SeaLice2015Manuscript/Figures/Figure 3/FarmLocations.csv")#
+farm.loc<-data.frame(EID=farms$EID,X=farms$lon,Y=farms$lat, name=farms$name, co=farms$company)#
+farm.loc<-as.EventData(farm.loc, projection="LL")#
+#
+data1<-subset(data, year==focal.year)#
+X<--data1$lon#
+Y<-data1$lat#
+eid<-c(1:length(X))#
+sampling.loc<-data.frame(EID=eid,X,Y,date=data1$Date, rep=data1$rep, route=data1$route)#
+sampling.loc<-as.EventData(sampling.loc, projection="LL")
+B<-read.csv("~/Google Drive/Data cloning/Sea lice model/MEE paper/Code/MigRoute.csv")#
+migRoute<-data.frame(PID=rep(1, dim(B)[1]), POS=c(1:dim(B)[1]),X=B$V1,Y=B$V2)#
+migRoute <-as.PolySet(migRoute, projection="LL")
+quartz(width=5, height=3, pointsize=10)#
 par(mar=c(4,4,1,1))#
-plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)
-addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cexds=1.8)
-plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cexds=1.8)#
-	addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)#
-	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)
-addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cex=1.8)
-plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
-	# lines(migRoute$X, migRoute$Y, lwd=8, col="#228B22")#
-	# arrows(migRoute$X[63], migRoute$Y[63],migRoute$X[64], migRoute$Y[64], col="#228B22", lwd=8, length=0.2)#
+plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
+	addLines(migRoute, lwd=8, col="#2c7bb680")#
 	# Add all farm locations#
 	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cex=1.8)#
 	addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)#
-	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")
-points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")
-points(L$text$x[3]-0.03, L$text$y[3], pch=8, cex=0.8)
+	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)#
+	points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")#
+#
 L<-legend("bottomleft", pch=c(22,8,21,21,15), pt.bg=c(colR[3], NA, "white", "white",NA), col=c(1,1,1,1,"#2c7bb680"), c("Salmon farm", "Wild salmon sampling site", "Moved sites", "Added sites", "Migration route"), bg="white", cex=0.8, pt.cex=c(1.5, 0.8, 1.8, 1.8,1.3))#
 points(L$text$x[3]-0.03, L$text$y[3], pch=8, cex=0.8)
-quartz(width=5, height=3, pointsize=10)#
-par(mar=c(4,4,1,1))#
-plotMap(thinPolys(nepacLLhigh, tol=0.4), xlim=c(-126.9, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
-	# lines(migRoute$X, migRoute$Y, lwd=8, col="#228B22")#
-	# arrows(migRoute$X[63], migRoute$Y[63],migRoute$X[64], migRoute$Y[64], col="#228B22", lwd=8, length=0.2)#
-	# Add all farm locations#
-	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", cex=1.8)#
-	addPoints(farm.loc[farm.loc$EID==19,], pch=22, col=1, bg=colR[3], cex=1.5)#
-	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)#
-	points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=1.8, pch=21, bg="white")
-quartz(width=5, height=3, pointsize=10)#
-par(mar=c(4,4,1,1))#
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
-	 # addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
-	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)#
-	# Add all farm locations#
-	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", col=colR[1], cex=1.8)#
-	addPoints(sampling.loc[is.element(sampling.loc$EID,c(1:3)),], pch=21, bg="white", col=colR[3], cex=1.8)#
-	addPoints(farm.loc[farm.loc$EID==19,], pch=15,cex=1.5)#
-	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)#
-	points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])#
-	points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=0.8, pch=8, col=colR[1])
-quartz(width=5, height=3, pointsize=10)#
-par(mar=c(4,4,1,1))#
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
-	 # addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
-	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)#
-	# Add all farm locations#
-	addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", col=colR[1], cex=1.8)#
-	addPoints(sampling.loc[is.element(sampling.loc$EID,c(1:3)),], pch=21, bg="white", col=colR[3], cex=1.8)#
-	addPoints(farm.loc[farm.loc$EID==19,], pch=15,cex=1.5)#
-	addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-par(mar=c(4,4,1,1))#
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
-	 # addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
-	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2],
-addPoints(farm.loc[farm.loc$EID==19,], pch=15,cex=1.5)
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
-	 # arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)
-arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col=paste(colR[2], "80", sep=""), lwd=12, length=0.08)
-arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=12, length=0.08)
-# arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=12, length=0.2)
-addLines(migRoute, lwd=14, col=paste(colR[2], "80", sep=""))#
-	 arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=12, length=0.2)
-addLines(migRoute, lwd=14, col=""#228B22"")
-addLines(migRoute, lwd=14, col=""#228B22"")
-addLines(migRoute, lwd=14, col="#228B22")
-arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=8, length=0.2)
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))#
-	 addLines(migRoute, lwd=8, col="#228B22")#
-	 arrows(x0=-126.7099, y0= 50.76891, x1= -126.7417, y1= 50.75410, col="#228B22", lwd=8, length=0.2)
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addPoints(sampling.loc[is.element(sampling.loc$EID,c(13,5)),], pch=21, bg="white", col=colR[1], cex=1.8)
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=0.8, pch=8, col=colR[1])
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addPoints(sampling.loc[is.element(sampling.loc$EID,c(1:3)),], pch=21, bg="white", col=colR[3], cex=1.8)
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-points(c(-126.2374, -126.2353, -126.1611), c(50.66421, 50.70409, 50.77739), cex=0.8, pch=8, col=colR[3])
-plotMap(thinPolys(nepacLLhigh, tol=0.3), xlim=c(-126.8, -125.6), ylim=c(50.55, 50.9), col=grey(0.8), bg="white", las=1, border=grey(0.5))
-addPoints(sampling.loc[sampling.loc$rep==1&sampling.loc$route!="Lower Knight",], cex=0.8, pch=8)
-points(c(-125.8952, -125.7287), c(50.69059, 50.71026), cex=0.8, pch=8, col=colR[1])
-plot(1,1,"n", bty="n", xlab="", ylab="")
-plot(1,1,"n", bty="n", xlab="", ylab="", xaxt="n", yaxt="n")
-L<-legend("bottomleft", pch=c(22,8,8,8,21,21), pt.bg=c(1,rep(NA, 3),rep("white",2)), col=c(1,1,rep(colR[c(3,1)],2)), c("Salmon farm", "Original data", "Added sites (less spread)", "Added sites (more spread)", "Removed sites (less spread)", "Removed site (more spread)"), bg="white", cex=0.8, pt.cex=c(1.5, rep(0.8, 3), rep(1.8,2)))
-plot(1:3, 1:3, col=colR, pch=19, cex=3)
-colR<-c("#2c7bb6", "#abd9e9", "#fdae61", "#d7191c") #Light blue: "#abd9e9"
-plot(1:4, 1:4, col=colR, pch=19, cex=3)
-x<-seq(-10,10,0.1)
-x<-seq(-10,10,0.01)
-p<-dnorm(x, mean=1.5, sd=0.3)
-plot(x, p, "l")
-quartz(width=5, height=4)
-quartz(width=6, height=4)
-plot(x, p, "l")
-par(mar=c(4,4,2,1), bg=:white)
-par(mar=c(4,4,2,1), bg="white")
-plot(x, p, "l")
-p<-dnorm(x, mean=1.5, sd=1.3)
-par(mar=c(4,4,2,1), bg="white")#
-plot(x, p, "l")
-plot(x, p, "l", lty=2, col=colR[1])
-plot(x, p, "l", col=colR[1], lwd=2)
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n")
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l")
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE)
-par(mar=c(4,4,2,1), bg="white")#
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)
-mtext(side=2, line=1, "Density")
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-quartz(width=7, height=4)#
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-p<-dnorm(x, mean=1.5, sd=2)#
-L<-dnorm(x, -1, 0.5)
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-lines(x, L, col=colR[4])
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=c(p,L))
-L
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)))
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
+20870/60/24
+20886.43/60/24
+20860.73/60/24
+load('~/Google Drive/Estimability/Manuscript/EcolEvol submission/Revision/Workspaces/Original_LongerRun_20160809.RData')
+ls()
+length(mod1)
+length(dc.mod)
+plot(dc.mod)
+dc.table(dc.mod)
+library(dclone)
+?dc.fit
+plot(dctable(dc.mod), type="var")
+rm(list=ls())
+load('~/Google Drive/Estimability/Manuscript/EcolEvol submission/Revision/Workspaces/LessSpread_LongerRun_20160809.RData')
+plot(dctable(dc.mod), type="var")
+library(dclone)#
+library(gplots)#
+library(gtools)#
 #
-lines(x, L, col=colR[4])
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)), xlim=c(-7, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
+#Color scheme for all figures#
+colR<-c("#d7191c", 1, "#2c7bb6")
+rm(list=ls())
+setwd("~/Google Drive/Estimability/Code/DataCloning4StudyDesign")
+library(dclone)#
+library(gplots)#
+library(gtools)#
 #
-lines(x, L, col=colR[4])
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
+#Color scheme for all figures#
+colR<-c("#d7191c", 1, "#2c7bb6")#
 #
-lines(x, L, col=colR[4])
-lines(x, L*p)
-lines(x, L*p/sum(L*p))
-sum(L*p)
-sum(p)
-sum(L)
-sum(L*p)
-lines(x, L*p/(001*sum(L*p))
-)
-lines(x, L*p/(0.01*sum(L*p)))
-p<-dnorm(x, mean=1.5, sd=2)#
-L<-dnorm(x, -1, 1.2)
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, p, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(p,L)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
+##########################################################
+# Data cloning analysis#
+######################################################### #
 #
-lines(x, L, col=colR[4])
-lines(x, L*p/(0.01*sum(L*p)))
-plot(x, prior, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))
-x<-seq(-10,10,0.01)#
-prior<-dnorm(x, mean=1.5, sd=2)#
-like<-dnorm(x, -1, 1.2)#
-post<-L*p/(0.01*sum(L*p))
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, prior, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-lines(x, L, col=colR[4])
-lines(x, L, col=colR[4], lwd=2)
-lines(x, post, col=colR[3], lwd=2)
-colR2<-c("#2c7bb660", "#abd9e960", "#fdae6160", "#d7191c60")
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, prior, "l", col=colR[1], lwd=2, yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-lines(x, L, col=colR[4], lwd=2)
-lines(x, L, col=colR2[4], lwd=2)
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-lines(x, prior, col=colR2[1], lwd=2)#
-lines(x, like, col=colR2[4], lwd=2)#
-lines(x, post, col=colR[3], lwd=2)
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-lines(x, prior, col=colR2[1])#
-lines(x, like, col=colR2[4])#
-lines(x, post, col=colR[3], lwd=2)
-lines(x, post, col=colR[3], lwd=3)
-lines(x, prior, col=colR[1], lwd=2)
-lines(x, like, col=colR[4], lwd=2)
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-lines(x, prior, col=colR[1], lwd=2)
-lines(x, like^2, col=colR[4], lwd=2)
-lines(x, like, col=colR[4], lwd=2)
-post<-like*prior/(0.01*sum(like*prior))
-lines(x, like^2*prior/(0.01*sum(like^2*prior)))
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-post2<-like^2*prior/(0.01*sum(like^2*prior))
-post2
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7))
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
+# List to store three different data sets and 3 different priors#
+allMod<-list(); length(allMod)<-3#
+allDat<-list();length(allX)<-3#
+allX<-list();length(allX)<-3#
 #
-lines(x, prior, col=colR[1], lwd=2)
-lines(x, like, col=colR[4], lwd=2)
-lines(x, like^2, col=colR[4], lwd=2)
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
+# 1) Less-spread data#
+# load('Code/Workspaces/20160125_lessSpreadData_prior1.RData')#
+load('Code/Workspaces/20160809_lessSpreadData_25clones.RData')#
+allMod[[1]]<-dc.mod#
+allDat[[1]]<-data#
+allX[[1]]<-x#
 #
-lines(x, prior, col=colR[1], lwd=2)#
-lines(x, like, col=colR2[4], lwd=2)#
-lines(x, like^2, col=colR[4], lwd=2)
-lines(x, post, lwd=2, col=colR2[3])
-lines(x, post2, lwd=2, col=colR[3])
-# # u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08);arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE)
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE)
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)
-x<-seq(-10,10,0.01)
-prior<-rep(0.01, length(x))
-like<-dnorm(x, -1, 1.2)
-post<-like*prior/(0.01*sum(like*prior))
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")
-lines(x, prior, col=colR[1], lwd=2)
-lines(x, like, col=colR[4], lwd=2)
-lines(x, post, col=colR[3], lwd=3)
-post2<-like^2*prior/(0.01*sum(like^2*prior))
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7))#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
+# 2) Original data#
+# load('Code/Workspaces/20160125_originalData_prior1.RData')#
+load('Code/Workspaces/20160809_originalData_25clones.RData')#
+allMod[[2]]<-dc.mod#
+allDat[[2]]<-data#
+allX[[2]]<-x
+# load('Code/Workspaces/20160125_moreSpreadData_prior1.RData')#
+load('Code/Workspaces/20160809_moreSpreadData_25clones.RData')#
+allMod[[3]]<-dc.mod#
+allDat[[3]]<-data#
+allX[[3]]<-x
+DC<-list(); length(DC)<-3#
+for(i in 1:3){ DC[[i]]<-dctable(allMod[[i]])}
+DC<-list(); length(DC)<-3#
+for(i in 1:3){ DC[[i]]<-dctable(allMod[[i]])}#
 #
-lines(x, prior, col=colR[1], lwd=2)#
-lines(x, like, col=colR2[4], lwd=2)#
-lines(x, like^2, col=colR[4], lwd=2)
-lines(x, post, lwd=2, col=colR2[3])#
-lines(x, post2, lwd=2, col=colR[3])
-plot(x, prior, "n", yaxt="n", bty="l", xlab="Parameter value", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)
-mtext(side=2, line=1, "Density")
-ltext(side=1, line=1, "Parameter value")
-mtext(side=1, line=1, "Parameter value")
-par(mar=c(4,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")
-lines(x, prior, col=colR[1], lwd=2)#
+# Plot of varaiance over number of clones#
+par.names<-c(expression(italic(D)), expression(lambda[c]), expression(italic(L[h])), expression(italic(L[m])), expression(alpha), expression(kappa), expression(italic(s[c])), expression(italic(s[h]))) #
 #
-#Like#
-lines(x, like, col=colR[4], lwd=2)#
+quartz(width=3.2, height=4, pointsize=9)#
+par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));#
+k<-0#
+for(i in 1:2){#
+	k<-k+1#
+	plot(1:10, 1/c(1:10), "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j], cex=1.2)#
+	}#
+	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)#
 #
-#Post#
-lines(x, post, col=colR[3], lwd=3)
-prior<-dnorm(x, mean=1.5, sd=2)
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")
-prior<-rep(0.01, length(x))#
-like<-dnorm(x, 1, 1.2)#
-post<-like*prior/(0.01*sum(like*prior))#
+	if(i==2) legend(6, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2)
+DC[[1]]
+DC[[j]][[c(6,5)[i]]]$n.clones
+K
+par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));#
+k<-0#
+for(i in 1:2){#
+	k<-k+1#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j], cex=1.2)#
+	}#
+	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)#
 #
-quartz(width=7, height=4)#
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
+	if(i==2) legend(6, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2)#
 #
-# Prior#
-lines(x, prior, col=colR[1], lwd=2)#
+#---------------------------------------------------------#
+# Fig. 3: Data cloning results: other parameters#
+#---------------------------------------------------------#
+quartz(width=6, height=3.5, pointsize=9)#
+par(mfrow=c(2,3), mar=c(1,1,2,0), oma=c(4,4,0,1));#
+j<-1#
+for(i in 1:6){#
+	I<-c(1,2,7:8,3:4)[i]#
+	plot(1:10, 1/c(1:10), "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", yaxt="n")#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) ", italic(D))), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) ", lambda[c])), line=0.5)#
+	if(i==3) mtext(side=3, adj=0, expression(paste("c) ", italic(s[c]))), line=0.5)#
+	if(i==4) mtext(side=3, adj=0, expression(paste("d) ", italic(s[h]))), line=0.5)#
+	if(i==5) mtext(side=3, adj=0, expression(paste("e) ", italic(L[h]))), line=0.5)#
+	if(i==6) mtext(side=3, adj=0, expression(paste("f) ", italic(L[m]))), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[I]]$r.hat,1)==1)+1], col=colR[j], cex=1.2)#
+	}#
+	if(is.element(i, c(4:6))) axis(side=1, cex.axis=1.4) else axis(side=1, labels=FALSE)#
+	if(is.element(i, c(1,4))) axis(side=2, cex.axis=1.4, las=1) else axis(side=2, labels=FALSE)#
 #
-#Like#
-lines(x, like, col=colR[4], lwd=2)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=2)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2.5)
+par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));#
+k<-0#
+for(i in 1:2){#
+	k<-k+1#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j])#
+	}#
+	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)#
 #
-#Post#
-lines(x, post, col=colR[3], lwd=3)
-lines(x, post, col=colR[3], lwd=3, lty=3)
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
+	if(i==2) legend(6, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2)
+par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));#
+k<-0#
+for(i in 1:2){#
+	k<-k+1#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j])#
+	}#
+	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)#
 #
-# Prior#
-lines(x, prior, col=colR[1], lwd=2)#
+	if(i==2) legend(6, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2)
+par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));#
+k<-0#
+for(i in 1:2){#
+	k<-k+1#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j], cex=0.8)#
+	}#
+	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)#
 #
-#Like#
-lines(x, like, col=colR[4], lwd=2)#
+	if(i==2) legend(6, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2)
+if(i==2) legend(max(K)*2/3, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)
+if(i==2) legend(max(K)*2/5, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)
+if(i==2) legend(max(K)*0.5, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)
+par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));#
+k<-0#
+for(i in 1:2){#
+	k<-k+1#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j], cex=0.8)#
+	}#
+	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)#
 #
-#Post#
-lines(x, post, col=colR[3], lwd=3, lty=3)
-post2<-like^2*prior/(0.01*sum(like^2*prior))
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-lines(x, prior, col=colR[1], lwd=2)#
-lines(x, like, col=colR2[4], lwd=2)#
-lines(x, like^2, col=colR[4], lwd=2)#
-lines(x, post, lwd=2, col=colR2[3])
-lines(x, post2, lwd=2, col=colR[3])
-lines(x, prior, col=colR[1], lwd=2)
-lines(x, like, col=colR2[4], lwd=2)
-for(i in 1:5){#
-	j<-c(1,2,3,5,10)[i]#
-	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i]))#
+	if(i==2) legend(max(K)*0.5, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA, pt.cex=0.8)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2)
+if(i==2) legend(max(K)*3/4, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA, pt.cex=0.8)
+if(i==2) legend(max(K)*5/8, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA, pt.cex=0.8)
+par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));#
+k<-0#
+for(i in 1:2){#
+	k<-k+1#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j], cex=0.8)#
+	}#
+	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)#
+#
+	if(i==2) legend(max(K)*5/8, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA, pt.cex=0.8)#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2)
+quartz(width=6, height=3.5, pointsize=9)#
+par(mfrow=c(2,3), mar=c(1,1,2,0), oma=c(4,4,0,1));#
+j<-1#
+for(i in 1:6){#
+	I<-c(1,2,7:8,3:4)[i]#
+	plot(1:10, 1/c(1:10), "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", yaxt="n")#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) ", italic(D))), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) ", lambda[c])), line=0.5)#
+	if(i==3) mtext(side=3, adj=0, expression(paste("c) ", italic(s[c]))), line=0.5)#
+	if(i==4) mtext(side=3, adj=0, expression(paste("d) ", italic(s[h]))), line=0.5)#
+	if(i==5) mtext(side=3, adj=0, expression(paste("e) ", italic(L[h]))), line=0.5)#
+	if(i==6) mtext(side=3, adj=0, expression(paste("f) ", italic(L[m]))), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[I]]$r.hat,1)==1)+1], col=colR[j], cex=1.2)#
+	}#
+	if(is.element(i, c(4:6))) axis(side=1, cex.axis=1.4) else axis(side=1, labels=FALSE)#
+	if(is.element(i, c(1,4))) axis(side=2, cex.axis=1.4, las=1) else axis(side=2, labels=FALSE)#
+#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=2)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2.5)
+par(mfrow=c(2,3), mar=c(1,1,2,0), oma=c(4,4,0,1));#
+j<-1#
+for(i in 1:6){#
+	I<-c(1,2,7:8,3:4)[i]#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", yaxt="n")#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) ", italic(D))), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) ", lambda[c])), line=0.5)#
+	if(i==3) mtext(side=3, adj=0, expression(paste("c) ", italic(s[c]))), line=0.5)#
+	if(i==4) mtext(side=3, adj=0, expression(paste("d) ", italic(s[h]))), line=0.5)#
+	if(i==5) mtext(side=3, adj=0, expression(paste("e) ", italic(L[h]))), line=0.5)#
+	if(i==6) mtext(side=3, adj=0, expression(paste("f) ", italic(L[m]))), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[I]]$r.hat,1)==1)+1], col=colR[j], cex=1.2)#
+	}#
+	if(is.element(i, c(4:6))) axis(side=1, cex.axis=1.4) else axis(side=1, labels=FALSE)#
+	if(is.element(i, c(1,4))) axis(side=2, cex.axis=1.4, las=1) else axis(side=2, labels=FALSE)#
+#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=2)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2.5)
+par(mfrow=c(2,3), mar=c(1,1,2,0), oma=c(4,4,0,1));#
+j<-1#
+for(i in 1:6){#
+	I<-c(1,2,7:8,3:4)[i]#
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", yaxt="n")#
+	if(i==1) mtext(side=3, adj=0, expression(paste("a) ", italic(D))), line=0.5)#
+	if(i==2) mtext(side=3, adj=0, expression(paste("b) ", lambda[c])), line=0.5)#
+	if(i==3) mtext(side=3, adj=0, expression(paste("c) ", italic(s[c]))), line=0.5)#
+	if(i==4) mtext(side=3, adj=0, expression(paste("d) ", italic(s[h]))), line=0.5)#
+	if(i==5) mtext(side=3, adj=0, expression(paste("e) ", italic(L[h]))), line=0.5)#
+	if(i==6) mtext(side=3, adj=0, expression(paste("f) ", italic(L[m]))), line=0.5)#
+	for(j in 1:3){#
+		lines(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), col=colR[j])#
+		points(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[I]]$r.hat,1)==1)+1], col=colR[j], cex=0.8)#
+	}#
+	if(is.element(i, c(4:6))) axis(side=1, cex.axis=1.4) else axis(side=1, labels=FALSE)#
+	if(is.element(i, c(1,4))) axis(side=2, cex.axis=1.4, las=1) else axis(side=2, labels=FALSE)#
+#
+	}#
+mtext(side=1, outer=TRUE, "Number of clones (K)", line=2)#
+mtext(side=2, outer=TRUE, "Scaled variance", line=2.5)
+par.names<-c(expression(italic(D)), expression(lambda[c]), expression(italic(L[h])), expression(italic(L[m])), expression(alpha), expression(kappa), expression(italic(s[c])), expression(italic(s[h]))) #
+#
+n.points<-100#
+n.seq<-round(seq(1,1000,length.out=n.points))#
+#
+ranges<-matrix(nrow=8, ncol=2)#
+for(i in 1:8){#
+	ranges[i,]<-range(c(allMod[[1]][[1]][n.seq,i], allMod[[1]][[2]][n.seq,i], allMod[[1]][[3]][n.seq,i], allMod[[2]][[1]][n.seq,i], allMod[[2]][[2]][n.seq,i], allMod[[2]][[3]][n.seq,i], allMod[[3]][[1]][n.seq,i], allMod[[3]][[2]][n.seq,i], allMod[[3]][[3]][n.seq,i]))#
+	}#
+#
+# All parameters#
+quartz(width=6.3, height=6)#
+par(mfrow=c(7,7), mar=c(0,0,0,0), mgp=c(2,1,0), oma=c(1,4,3,1))#
+for(j in 1:7){#
+	for(i in 2:8){	#
+		if(i>j){#
+			plot(1,1,"n",  xlab="", ylab="", xaxt="n", yaxt="n", xlim=ranges[i,], ylim=ranges[j,])#
+			for(k in 1:3){#
+				for(m in 1:3){ #
+					points(allMod[[k]][[m]][n.seq,i], allMod[[k]][[m]][n.seq,j], col=colR[k], pch=c(1,0,5)[k])#
+					}}#
+			if(i==j+1){#
+				mtext(side=2, par.names[j], line=1, las=1)#
+				}#
+			if(j==1) mtext(side=3, line=0.5, par.names[i])#
+		} else plot(1,1,"n", xaxt="n", yaxt="n", xlab="", ylab="", bty="n")#
+	}#
+}#
+#
+legend(-27.2, 27.2, pch=c(1,0,5), col=colR, c("Less spread", "Original data", "More spread"), xpd=NA, cex=1.2)
+quartz(width=6.3, height=6)#
+par(mfrow=c(7,7), mar=c(0,0,0,0), mgp=c(2,1,0), oma=c(1,4,3,1))#
+for(j in 1:7){#
+	for(i in 2:8){	#
+		if(i>j){#
+			plot(1,1,"n",  xlab="", ylab="", xaxt="n", yaxt="n", xlim=ranges[i,], ylim=ranges[j,])#
+			for(k in 1:3){#
+				for(m in 1:3){ #
+					points(allMod[[k]][[m]][n.seq,i], allMod[[k]][[m]][n.seq,j], col=colR[k], pch=c(1,0,5)[k])#
+					}}#
+			if(i==j+1){#
+				mtext(side=2, par.names[j], line=1, las=1)#
+				}#
+			if(j==1) mtext(side=3, line=0.5, par.names[i])#
+		} else plot(1,1,"n", xaxt="n", yaxt="n", xlab="", ylab="", bty="n")#
+	}#
+}#
+#
+legend(-27.2, 27.2, pch=c(1,0,5), col=colR, c("Less spread", "Original data", "More spread"), xpd=NA, cex=1.2)
+source("Code/sim_model.R")#
+#
+boot<-function(x, n=1000){#
+	xi<-matrix(sample(x, n*length(x), replace=TRUE), nrow=n, ncol=length(x))#
+	mean.x<-apply(xi, 1, mean, na.rm=TRUE)#
+	ret<-c(mean(x, na.rm=TRUE), quantile(mean.x, c(0.025, 0.975), na.rm=TRUE))#
+	return(ret)#
+}#
+#
+Z<-list();length(Z)<-9; dim(Z)<-c(3,3)#
+for(i in 1:3){for(j in 1:3) Z[[j,i]]<-matrix(nrow=length(x), ncol=3)}#
+for(j in 1:3){# for each dataset#
+	for(i in 1:length(x)){#
+		Z[[j,1]][i,]<-boot(allDat[[j]]$C[which(allDat[[j]]$site_num==i)])#
+		Z[[j,2]][i,]<-boot(allDat[[j]]$H[which(allDat[[j]]$site_num==i)])#
+		Z[[j,3]][i,]<-boot(allDat[[j]]$M[which(allDat[[j]]$site_num==i)])#
+		}#
+	}	#
+allParams<-list(); length(allParams)<-3#
+for(i in 1:3){ allParams[[i]]<-summary(allMod[[i]])[[1]][,1]}#
+#
+allPred<-list(); length(allPred)<-3#
+for(i in 1:3){ allPred[[i]]<-sim(allParams[[i]], x=c(-60:60)) }#
+#
+col2<-rep(colR[2], 16); col2[c(1,2,3)]<-colR[1]; col2[c(5,13)]<-colR[3]#
+#
+quartz(width=6.3, height=4, pointsize=11)#
+par(mfrow=c(3,3), mar=c(1,1,1,1), oma=c(3,4,2,1))#
+for(j in 1:3){#
+	for(i in 1:3){			#
+		plotCI(allX[[i]], Z[[i,j]][,1], "n", li= Z[[i,j]][,2], ui= Z[[i,j]][,3], xlab="", ylab="", bty="l", gap=0.3, xlim=c(-40,40), ylim=c(0, c(0.2, 0.7, 0.8)[j]), yaxt="n", xaxt="n", col=NA)#
+		lines(c(-60:60), allPred[[i]][,j], col=colR[i])#
+		abline(v=0, lty=2)#
+		plotCI(allX[[i]], Z[[i,j]][,1], li= Z[[i,j]][,2], ui= Z[[i,j]][,3], gap=0.3, pch=21, pt.bg="white", col=colR[i], add=TRUE)#
+		if(j==1) mtext(side=3, c("Less-spread", "Original", "More-spread")[i], line=1)#
+		if(j==3) axis(side=1) else axis(side=1, labels=FALSE)#
+		if(i==1) axis(side=2, las=1) else axis(side=2, labels=FALSE)#
+		if(i==1) mtext(side=2, c("C(x)", "H(x)", "M(x)")[j], line=3)#
+		if(i==1) points(allX[[i]][c(4,7,10)], Z[[i,j]][c(4,7,10),1], col=colR[1], pch=19)#
+		if(i==2) points(allX[[i]][c(1,2,3)], Z[[i,j]][c(1,2,3),1], col=1, pch=21, bg=colR[1])#
+		if(i==2) points(allX[[i]][c(5,13)], Z[[i,j]][c(5,13),1], col=1, pch=21, bg=colR[3])#
+		if(i==3) points(allX[[i]][c(1,2)], Z[[i,j]][c(1,2),1], col=colR[3], pch=19)#
+		}#
+}#
+mtext(side=1, outer=TRUE, "Distance along migration (km)", line=1.5)
+allParams<-list(); length(allParams)<-3*3; dim(allParams)<-c(3,3) # dataset, metric (mean, lci, uci)#
+for(i in 1:3){#
+	if(length(allMod[[i]])>0){#
+			allParams[[i,1]]<-summary(allMod[[i]])[[1]][,1]#
+			allParams[[i,2]]<-summary(allMod[[i]])[[2]][,1]#
+			allParams[[i,3]]<-summary(allMod[[i]])[[2]][,5]#
+		}#
+	}#
+#
+rangeP<-matrix(0, nrow=8, ncol=2)#
+for(k in 1:8){#
+	rangeP[k,1]<-min(allParams[[1,2]][k])#
+	for(i in 2:3){#
+		rangeP[k,1]<-min(c(rangeP[k,1], allParams[[i,2]][k]))#
+		}#
+	rangeP[k,2]<-max(allParams[[1,3]][k])#
+	for(i in 2:3){#
+		rangeP[k,2]<-max(c(rangeP[k,2], allParams[[i,3]][k]))#
+		}#
+	}#
+#
+quartz(width=5, height=2.5, pointsize=11)#
+par(mar=c(3,1,1,1), oma=c(0,0,0,0))#
+for(k in 1:8){#
+	plotCI(k, allParams[[1,1]][k], col=NA, xlim=c(1,8.8), ylim=rangeP[k,], yaxt="n", xaxt="n", bty="n")#
+	plotCI(k+0.2, allParams[[1,1]][k], li=allParams[[1,2]][k], ui= allParams[[1,3]][k], col=colR[1], gap=0.3, add=TRUE, pch=21, pt.bg="white", sfrac=0.008)#
+		plotCI(k+0.375, allParams[[2,1]][k], li=allParams[[2,2]][k],ui= allParams[[2,3]][k], col=colR[2], gap=0.3, add=TRUE, pch=22, pt.bg="white", sfrac=0.008)#
+		plotCI(k+0.55, allParams[[3,1]][k], li=allParams[[3,2]][k],ui= allParams[[3,3]][k], col=colR[3], gap=0.3, add=TRUE, pch=23, pt.bg="white", xpd=NA, sfrac=0.008)#
+	if(k<8) par(new=TRUE)#
+	}#
+axis(side=1, at=c(1:8+0.3), labels=par.names, tick=FALSE, line=-0.5)	#
+axis(side=1, at=1:9-0.15, labels=FALSE)#
+#legend(8.8, 5, col=colR, lwd=1, pch=21:23, pt.bg=colR, c("Less spread", "True", "More spread"), xpd=NA, bty="n", pt.cex=0.8, cex=0.8)#
+mtext(side=2, "Parameter estimate")
+plot(dctable(allMod[[1]]))
+plot(dctable(allMod[[1]][[1]][,3]))
+DC[[1]]
+j<-1#
+i<-2
+DC[[j]][[i]]
+plot(K, DC[[j]][[i]][,'mean'])
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'])
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l")
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate")
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3)
+names(DC[[j]])
+j<-1#
+i<-5#
+#
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3)
+j<-1#
+i<-6#
+#
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3)
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=par.names[i])
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=log.par.names[i])
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=par.names[i])
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=paste("log ", par.names[i]))
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=expression(paste("log ", par.names[i])))
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=expression(paste("log ", par.names[i])))
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=substitute(paste("log ", N), list(N=par.names[i])))
+par.names[i]
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=paste("log ", N), list(N=par.names[i]))
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Parameter estimate", xlab="Number of clones", gap=0.3, main=par.names[i])
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Log parameter estimate", xlab="Number of clones", gap=0.3, main=par.names[i])
+j<-1#
+#
+par(mfrow=c(2,1), mar=c(4,4,2,1))#
+for(i in 5:6){#
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Log parameter estimate", xlab="Number of clones", gap=0.3, main=par.names[i])#
+#
 }
-lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""))
-for(i in 1:5){#
-	j<-c(1,2,3,5,10)[i]#
-	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""))#
+j<-1#
+#
+par(mfrow=c(2,1), mar=c(4,4,2,1))#
+for(i in 5:6){#
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Log parameter estimate", xlab="Number of clones", gap=0.3, main=par.names[i])#
+#
 }
-lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-3, 8), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-for(i in 1:5){#
-	j<-c(1,2,3,5,10)[i]#
-	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)#
-}
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-3, 5), xaxt="n")
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-3, 5), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-for(i in 1:5){#
-	j<-c(1,2,3,5,10)[i]#
-	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)#
-}
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-for(i in 1:5){#
-	j<-c(1,2,3,5,10)[i]#
-	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[3], c(30,45,60,80,99)[i], sep=""), lwd=2)#
-}
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-for(i in 1:5){#
-	j<-c(1,2,3,5,10)[i]#
-	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=colR[3], lwd=2)#
-}
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[3])
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-# Prior#
-lines(x, prior, col=colR[3], lwd=2)#
-#
-#Like#
-lines(x, like, col=colR[4], lwd=2)#
-#
-#Post#
-lines(x, post, col=colR[1], lwd=3)
-post2<-like^2*prior/(0.01*sum(like^2*prior))#
-#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-lines(x, prior, col=colR[3], lwd=2)#
-lines(x, like, col=colR2[4], lwd=2)#
-lines(x, like^2, col=colR[4], lwd=2)#
-lines(x, post, lwd=2, col=colR2[1])#
-lines(x, post2, lwd=2, col=colR[1])
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(0, like^10*prior/(0.01*sum(like^10*prior)))), xlim=c(-3, 5), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-for(i in 1:5){#
-	j<-c(1,2,3,5,10)[i]#
-	lines(x, like^j*prior/(0.01*sum(like^j*prior)), col=paste(colR[1], c(30,45,60,80,99)[i], sep=""), lwd=2)#
-}
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l")
-uartz(width=4, height=4)#
-par(mar=c(4,4,2,1), bg="white")#
-#
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1)
-par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1)
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-quartz(width=3, height=3)#
-par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))#
-#
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-quartz(width=4, height=3)#
-par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))#
-#
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", xlab=c(0,10))
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", xlab=c(0,10))
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", xlim=c(0,10))
-plot(1:10, 1/1:10, "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-post.all<-matrix(NA, nrow=5, ncol=length(x))#
-for(i in 1:5) post.all[i,]<-like^c(1,2,3,5,10)[i]*prior/(0.01*sum(like^c(1,2,3,5,10)[i]*prior))
-library(gplots)
-plotCI(1:10, apply(post.all,1,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-plotCI(1:10, apply(post.all,2,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-post.all<-matrix(NA, nrow=5, ncol=length(x))#
-for(i in 1:5) post.all[i,]<-like^c(1,2,3,5,10)[i]*prior/(0.01*sum(like^c(1,2,3,5,10)[i]*prior))
-post.all
-plotCI(1:10, apply(post.all,2,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-apply(post.all,2,mean)
-plotCI(1:10, apply(post.all,1,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-apply(post.all,1,mean)
-post.all<-matrix(NA, nrow=5, ncol=length(x))#
-for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
-post.all<-matrix(NA, nrow=10, ncol=length(x))
-for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
-plotCI(1:10, apply(post.all,1,mean), "o", pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-apply(post.all,1,sd)
-plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, bg="white", col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance")
-plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
-x<-seq(-10,10,0.01)#
-prior<-dnorm(x, mean=1.5, sd=2)#
-# prior<-rep(0.01, length(x))#
-like<-dnorm(x, 1, 1.2)#
-post<-like*prior/(0.01*sum(like*prior))#
-#
-quartz(width=7, height=4)#
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")
-lines(x, prior, col=colR[3], lwd=2)#
-#
-#Like#
-lines(x, like, col=colR[4], lwd=2)#
-#
-#Post#
-lines(x, post, col=colR[1], lwd=3)
-prior<-dnorm(x, mean=2.5, sd=2)#
-# prior<-rep(0.01, length(x))#
-like<-dnorm(x, 1, 1.2)#
-post<-like*prior/(0.01*sum(like*prior))#
-#
-quartz(width=7, height=4)#
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-# Prior#
-lines(x, prior, col=colR[3], lwd=2)#
-#
-#Like#
-lines(x, like, col=colR[4], lwd=2)#
-#
-#Post#
-lines(x, post, col=colR[1], lwd=3)
-prior<-dnorm(x, mean=2.5, sd=2)#
-# prior<-rep(0.01, length(x))#
-like<-dnorm(x, -1, 1.2)#
-post<-like*prior/(0.01*sum(like*prior))#
-#
-quartz(width=7, height=4)#
-par(mar=c(2,2,2,1), bg="white")#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")
-lines(x, prior, col=colR[3], lwd=2)#
-#
-#Like#
-lines(x, like, col=colR[4], lwd=2)#
-#
-#Post#
-lines(x, post, col=colR[1], lwd=3)#
-#
-# 2 clones#
-post2<-like^2*prior/(0.01*sum(like^2*prior))
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(c(prior, like, post2)), xlim=c(-5, 7), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-lines(x, prior, col=colR[3], lwd=2)#
-lines(x, like, col=colR2[4], lwd=2)#
-lines(x, like^2, col=colR[4], lwd=2)#
-lines(x, post, lwd=2, col=colR2[1])#
-lines(x, post2, lwd=2, col=colR[1])
-post.all<-matrix(NA, nrow=10, ncol=length(x))#
-for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))#
-#
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(post.all), xlim=c(-3, 5), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")
-for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(30,45,60,80,99)[i], sep=""), lwd=2)
-for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(1:9,9.9)/10[i], sep=""), lwd=2)
-c(1:9,9.9)/10
-for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)
-for(i in 1:10) lines(x, post.all[,i], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)
-post.all[,i]
-for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
-dim(post.all)
-for(i in 1:10) lines(x, post.all[i,], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)
-lines(x, like, col=colR[4], lwd=2)
-lines(x, like^1000*prior/(0.01*sum(like^1000*prior)), lty=3)
-like^1000*prior/(0.01*sum(like^1000*prior))
-lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=3)
-lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=2)
-lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=2, col=colR[1])
-plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
-plotCI(1:10, apply(post.all,2,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,2,sd), apply(post.all,2,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
-x<-seq(-10,10,0.01)#
-prior<-dnorm(x, mean=2.5, sd=2)#
-# prior<-rep(0.01, length(x))#
-like<-dnorm(x, -1, 1.2)#
-post<-like*prior/(0.01*sum(like*prior))
-post.all<-matrix(NA, nrow=10, ncol=length(x))#
-for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
-plot(x, prior, "n", yaxt="n", bty="l", xlab="", ylab="", ylim=range(post.all), xlim=c(-3, 5), xaxt="n")#
-u <- par("usr");arrows(u[1], u[3], u[1], u[4], code = 2, xpd = TRUE, length=0.08)#
-arrows(u[1], u[3], u[2], u[3], code = 2, xpd = TRUE, length=0.08)#
-mtext(side=2, line=1, "Density")#
-mtext(side=1, line=1, "Parameter value")#
-#
-for(i in 1:10) lines(x, post.all[i,], col=paste(colR[1], c(seq(10,90,10),99)[i], sep=""), lwd=2)#
-lines(x, like^100*prior/(0.01*sum(like^100*prior)), lty=2, col=colR[1])
-par(mar=c(4,4,2,1), bg="white", mgp=c(2.5,1,0))#
-#
-plotCI(1:10, apply(post.all,1,mean), li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
-plot(1:10, apply(post.all, 1, mean))
-x<-seq(-10,10,0.01)#
-prior<-dnorm(x, mean=2.5, sd=2)#
-# prior<-rep(0.01, length(x))#
-like<-dnorm(x, -1, 1.2)#
-post<-like*prior/(0.01*sum(like*prior))
-post.all<-matrix(NA, nrow=10, ncol=length(x))#
-for(i in 1:10) post.all[i,]<-like^i*prior/(0.01*sum(like^i*prior))
-apply(post.all,1,mean)
-apply(post.all,1,mode)
-which(post.all[1,]==max(post.all[1,]))
-which(post.all[i,]==max(post.all[i,]))
-i=1
-plotCI(1:10, x[which(post.all[i,]==max(post.all[i,]))], li=apply(post.all,1,mean)-1.96*apply(post.all,1,sd), apply(post.all,1,mean)+1.96*apply(post.all,1,sd), pch=21, col=colR[1], bty="l", las=1, xlab="Number of clones (K)", ylab="Scaled variance", gap=0.3)
-calcMode<-function(dens) which(dens==max(dens))
-calcMode<-function(dens) which(dens==max(dens))
-apply(post.all, 1, calcMode)
-plot(1:10, x[apply(post.all, 1, calcMode)]
-)
-plot(post.all[1,])
-plot(x,post.all[1,])
-sum(post.all[1,])

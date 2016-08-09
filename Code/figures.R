@@ -28,19 +28,22 @@ allDat<-list();length(allX)<-3
 allX<-list();length(allX)<-3
 
 # 1) Less-spread data
-load('Code/Workspaces/20160125_lessSpreadData_prior1.RData')
+# load('Code/Workspaces/20160125_lessSpreadData_prior1.RData')
+load('Code/Workspaces/20160809_lessSpreadData_25clones.RData')
 allMod[[1]]<-dc.mod
 allDat[[1]]<-data
 allX[[1]]<-x
 
 # 2) Original data
-load('Code/Workspaces/20160125_originalData_prior1.RData')
+# load('Code/Workspaces/20160125_originalData_prior1.RData')
+load('Code/Workspaces/20160809_originalData_25clones.RData')
 allMod[[2]]<-dc.mod
 allDat[[2]]<-data
 allX[[2]]<-x
 
 # 3) More-spread data
-load('Code/Workspaces/20160125_moreSpreadData_prior1.RData')
+# load('Code/Workspaces/20160125_moreSpreadData_prior1.RData')
+load('Code/Workspaces/20160809_moreSpreadData_25clones.RData')
 allMod[[3]]<-dc.mod
 allDat[[3]]<-data
 allX[[3]]<-x
@@ -60,17 +63,17 @@ par(mfrow=c(2,1), mar=c(1,1,2,1), oma=c(2,3,0,0));
 k<-0
 for(i in 1:2){
 	k<-k+1
-	plot(1:10, 1/c(1:10), "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", las=1)
 	if(i==1) mtext(side=3, adj=0, expression(paste("a) Ambient source strength (", kappa*beta*v^-1, ")")), line=0.5)
 	if(i==2) mtext(side=3, adj=0, expression(paste("b) Farm source strength (", alpha*beta*v^-1, ")")), line=0.5)
 	for(j in 1:3){
 		lines(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), col=colR[j])
-		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j], cex=1.2)
+		points(DC[[j]][[c(6,5)[i]]]$n.clones, DC[[j]][[c(6,5)[i]]]$sd^2/(DC[[j]][[c(6,5)[i]]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[c(6,5)[i]]]$r.hat,1)==1)+1], col=colR[j], cex=0.8)
 	}
 	
 	if(i==2) axis(side=1) else axis(side=1, labels=FALSE)
 
-	if(i==2) legend(6, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA)
+	if(i==2) legend(max(K)*5/8, 1.1, pch=c(21:24), lwd=1, lty=1, col=colR, c("Less-spread", "Original", "More-spread"), bty="n", pt.bg=colR, xpd=NA, pt.cex=0.8)
 	
 	}
 mtext(side=1, outer=TRUE, "Number of clones (K)", line=1)
@@ -84,7 +87,7 @@ par(mfrow=c(2,3), mar=c(1,1,2,0), oma=c(4,4,0,1));
 j<-1
 for(i in 1:6){
 	I<-c(1,2,7:8,3:4)[i]
-	plot(1:10, 1/c(1:10), "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", yaxt="n")
+	plot(K, 1/K, "l", lty=2, bty="l", xlab="", ylab="", ylim=c(0,1), xaxt="n", yaxt="n")
 	if(i==1) mtext(side=3, adj=0, expression(paste("a) ", italic(D))), line=0.5)
 	if(i==2) mtext(side=3, adj=0, expression(paste("b) ", lambda[c])), line=0.5)
 	if(i==3) mtext(side=3, adj=0, expression(paste("c) ", italic(s[c]))), line=0.5)
@@ -94,7 +97,7 @@ for(i in 1:6){
 	
 	for(j in 1:3){
 		lines(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), col=colR[j])
-		points(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[I]]$r.hat,1)==1)+1], col=colR[j], cex=1.2)
+		points(DC[[j]][[I]]$n.clones, DC[[j]][[I]]$sd^2/(DC[[j]][[I]]$sd[1]^2), pch=c(21:24)[j], bg=c("white",colR[j])[1*(round(DC[[j]][[I]]$r.hat,1)==1)+1], col=colR[j], cex=0.8)
 	}
 	
 	if(is.element(i, c(4:6))) axis(side=1, cex.axis=1.4) else axis(side=1, labels=FALSE)
@@ -275,3 +278,13 @@ for(k in 1:8){
 	
 	}
 
+######################################################### 
+# Fig Sx: Parameter estimates over the number of clones
+######################################################### 
+j<-1
+
+par(mfrow=c(2,1), mar=c(4,4,2,1))
+for(i in 5:6){
+plotCI(K, DC[[j]][[i]][,'mean'], li=DC[[j]][[i]][,'2.5%'], ui=DC[[j]][[i]][,'97.5%'], bty="l", las=1, ylab="Log parameter estimate", xlab="Number of clones", gap=0.3, main=par.names[i])
+
+}
